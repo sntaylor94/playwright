@@ -7,6 +7,9 @@ const SAUCE_USER_PASSWORD = "secret_sauce";
 
 
 test.describe("Login to Swag Labs" , () => { 
+
+    test.use({ storageState: { cookies: [], origins: [] } })
+    
     test('standard user login', async ({ page }) => {
         const loginPage = new LoginPage(page); 
         await loginPage.gotoLogin();
