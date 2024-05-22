@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/login';
+import { LoginPage } from '../pages/login';
 
 const STANDARD_USER_ID = "standard_user";
 const LOCKED_OUT_USER_ID = "locked_out_user"
