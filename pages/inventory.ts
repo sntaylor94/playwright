@@ -4,13 +4,12 @@ export class InventoryPage {
 
     readonly page: Page;
     readonly inventoryURL: string;
-    // readonly inventoryItemName: Locator;
+    readonly sortDropdown: Locator
 
     constructor(page: Page) {
         this.page = page;
         this.inventoryURL = "https://www.saucedemo.com/inventory.html";
-        // this.inventoryItemName = page.getByTestId('inventory-item-name');
-
+        this.sortDropdown = page.getByTestId('product-sort-container');
     }
 
     async goToInventory() {
@@ -26,6 +25,10 @@ export class InventoryPage {
             titlesArray[i] = (await itemTitleList[i].textContent())!
         };
         return titlesArray;
+    }
+
+    async sortInventory (sortType: string) {
+        await this.sortDropdown.selectOption(sortType);
     }
     
 }
