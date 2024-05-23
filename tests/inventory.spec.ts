@@ -24,7 +24,7 @@ test.describe("Sort Inventory", () => {
         await inventoryPage.sortInventory(ABC_SORT);
         const itemTitles = await inventoryPage.getTitles();      
 
-        //Sort array of titles & compare to unsorted
+        //Sort array of titles & compare to page
         const sortedTitles = itemTitles.sort();
         const orderMatches = helper.compareStringArray(itemTitles, sortedTitles);
 
@@ -34,14 +34,45 @@ test.describe("Sort Inventory", () => {
 
     test('sort reverse alphabetical', async ({ page }) => {
         const inventoryPage = new InventoryPage(page);
+
         //Sort by reverse alphabetical order
         await inventoryPage.sortInventory(REVERSE_ABC_SORT);
         const itemTitles = await inventoryPage.getTitles();
 
-        //sort array by reverse alphabetical order & compare to unsorted
+        //sort array by reverse alphabetical order & compare to page
         const sortedTitles = itemTitles.sort().reverse();
         const orderMatches = helper.compareStringArray(itemTitles, sortedTitles)
         await expect(orderMatches, 'Items should be sorted in reverse alphabetical order').toBe(true);
+    });
+
+    test('sort price ascending', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+
+        //sort page inventory items by price low to high
+        await inventoryPage.sortInventory(LOW_HIGH_SORT);
+        const pricesArray = await helper.convertStringArrayIntoNumArray(await inventoryPage.getPrices());
+
+        //sort array by prices low to high & compare to page
+        const sortedPrices = await helper.sortNumArrayAscending(pricesArray);
+        const orderMatches = await helper.compareNumArray(pricesArray, sortedPrices);
+
+        //Expect sorted prices to match order of prices on page
+        await expect(orderMatches, 'Prices should be sorted low to high').toBe(true);
+    });
+
+    test('sort price descending', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+
+        //sort page inventory items by price low to high
+        await inventoryPage.sortInventory(HIGH_LOW_SORT);
+        const pricesArray = await helper.convertStringArrayIntoNumArray(await inventoryPage.getPrices());
+
+        //sort array by prices low to high & compare to page
+        const sortedPrices = await helper.sortNumArrayDescending(pricesArray);
+        const orderMatches = await helper.compareNumArray(pricesArray, sortedPrices);
+
+        //Expect sorted prices to match order of prices on page
+        await expect(orderMatches, 'Prices should be sorted high to low').toBe(true);
     });
 
 });
