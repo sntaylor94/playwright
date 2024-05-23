@@ -22,7 +22,6 @@ export class LoginPage {
     }
 
     async login(username: string, password: string) {
-        const inventoryPage = new InventoryPage(this.page)
         await this.gotoLogin();
         await this.usernameField.fill(username);
         await this.passwordField.fill(password);
