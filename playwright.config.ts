@@ -1,16 +1,16 @@
+
 import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests/swaglabs',
+  testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -33,31 +33,31 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'setup',
-      testMatch: /.*\.setup\.ts/
-    },
+    // {
+    //   name: 'setup',
+    //   testMatch: /.*\.setup\.ts/
+    // },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-      storageState: 'playwright/.auth/user.json'
+      // storageState: '../.auth/user.json'
       },
-      dependencies: ['setup'],
+      // dependencies: ['setup'],
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'],
-      storageState: 'playwright/.auth/user.json' },
-      dependencies: ['setup'],
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'],
+    //   storageState: '../.auth/user.json' },
+    //   dependencies: ['setup'],
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'],
-      storageState: 'playwright/.auth/user.json' },
-      dependencies: ['setup'],
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'],
+    //   storageState: '../.auth/user.json' },
+    //   dependencies: ['setup'],
+    // },
 
     /* Test against mobile viewports. */
     // {

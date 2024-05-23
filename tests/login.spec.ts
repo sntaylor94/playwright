@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/login';
+import { LoginPage } from '../pages/login';
 
 const STANDARD_USER_ID = "standard_user";
 const LOCKED_OUT_USER_ID = "locked_out_user"
@@ -12,7 +12,6 @@ test.describe("Login to Swag Labs" , () => {
     
     test('standard user login', async ({ page }) => {
         const loginPage = new LoginPage(page); 
-        await loginPage.gotoLogin();
         await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
         
         // Expect page navigation after successful login
