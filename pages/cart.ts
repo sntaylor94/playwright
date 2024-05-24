@@ -23,8 +23,4 @@ export class CartPage {
         const cartQuantity = await this.cartItem.getByText('1Sauce Labs Backpackcarry.').locator('[data-test="item-quantity"]').textContent();
     }
 
-    async getCartItemName() {
-
-    }
-
 }
