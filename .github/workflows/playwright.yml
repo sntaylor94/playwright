@@ -18,6 +18,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      run: echo 'UID ${{ secrets.STANDARD_USER_ID}}'
+      env: 
+        STANDARD_USER_ID: ${{ secrets.STANDARD_USER_ID }}
+        SAUCE_USER_PASSWORD: ${{ secrets.SAUCE_USER_PASSWORD }}
       run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: always()
