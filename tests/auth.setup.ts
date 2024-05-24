@@ -9,7 +9,7 @@ const SAUCE_USER_PASSWORD = "secret_sauce";
 setup('authenticate user', async({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.gotoLogin();
-    await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
+    await loginPage.login(process.env.STANDARD_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
 
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
 

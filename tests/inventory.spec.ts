@@ -3,8 +3,6 @@ import { InventoryPage } from '../pages/inventory';
 import { LoginPage } from '../pages/login';
 import * as helper from '../utils/helper-methods'
 
-const STANDARD_USER_ID = "standard_user";
-const SAUCE_USER_PASSWORD = "secret_sauce";
 const ABC_SORT = "az";
 const REVERSE_ABC_SORT = "za";
 const LOW_HIGH_SORT = "lohi";
@@ -13,7 +11,7 @@ const HIGH_LOW_SORT = "hilo";
 test.describe("Sort Inventory", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page)
-        await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
+        await loginPage.login(process.env.STANDARD_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
     })
 
     test('sort alphabetical', async ({ page }) => {
@@ -79,7 +77,7 @@ test.describe("Sort Inventory", () => {
 test.describe("Add and remove inventory items", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page)
-        await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
+        await loginPage.login(process.env.STANDARD_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
     })
 
     test('add item to cart', async ({ page }) => {
