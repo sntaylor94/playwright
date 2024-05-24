@@ -19,6 +19,8 @@ test.describe("Login to Swag Labs" , () => {
         await loginPage.login(process.env.LOCKED_OUT_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
 
         //Expect error reporting user has been locked out
-        await expect(page.getByText('Epic sadface: Sorry, this user has been locked out.')).toBeVisible();
+        await expect(
+            page.getByText('Epic sadface: Sorry, this user has been locked out.'), "Error should be displayed attempting to log in"
+            ).toBeVisible();
     })
 });

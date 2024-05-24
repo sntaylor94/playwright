@@ -13,5 +13,5 @@
 
 ## Scripts
 - npm run test - utilize to run all tests headlessly without opening the html report automatically
-- npm run test report - utilize to run all tests headlessly and automatically open the html report
-- rpm run test visual - utilize to run all tests in UI mode
+- npm run test-report - utilize to run all tests headlessly and automatically open the html report
+- rpm run test-visual - utilize to run all tests in UI mode
