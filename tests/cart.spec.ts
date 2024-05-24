@@ -3,14 +3,10 @@ import { InventoryPage } from '../pages/inventory';
 import { CartPage } from '../pages/cart';
 import { LoginPage } from '../pages/login';
 
-//refactor to use credential store
-const STANDARD_USER_ID = "standard_user";
-const SAUCE_USER_PASSWORD = "secret_sauce";
-
 test.describe("Standard User cart interactions", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page)
-        await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
+        await loginPage.login(process.env.STANDARD_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
     })
 
     test('verify one item can be added and viewed in cart', async ({ page }) => {
