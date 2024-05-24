@@ -10,7 +10,6 @@ const REVERSE_ABC_SORT = "za";
 const LOW_HIGH_SORT = "lohi";
 const HIGH_LOW_SORT = "hilo";
 
-
 test.describe("Sort Inventory", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page)
@@ -76,3 +75,55 @@ test.describe("Sort Inventory", () => {
     });
 
 });
+
+test.describe("Add and remove inventory items", () => {
+    test.beforeEach(async ({ page }) => {
+        const loginPage = new LoginPage(page)
+        await loginPage.login(STANDARD_USER_ID, SAUCE_USER_PASSWORD);
+    })
+
+    test('add item to cart', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+
+        //add one item to cart
+        await inventoryPage.addToCart('sauce labs backpack');
+        
+        //Expect the cart badge to display one item
+        const backpackRemove = await inventoryPage.getRemoveButton('sauce labs backpack');
+        const cartCount = await inventoryPage.getCartCount();
+        
+        await expect(backpackRemove, 'Sauce Labs Backpack item remove button should be visible').toBeEnabled();
+        await expect(cartCount, 'Cart should display one item').toEqual("1");  
+    })
+
+    test('add multiple items to cart', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+
+        //add multiple items to cart
+        await inventoryPage.addToCart('sauce labs backpack');
+        await inventoryPage.addToCart('sauce labs onesie');
+
+        //Expect the cart badge to display one item
+        const cartCount = await inventoryPage.getCartCount();
+
+        //Expect cart badge to display two items
+        await expect(cartCount, 'Cart badge should be visible & display two items').toEqual("2");
+    })
+
+    test('validate remove item works', async ({ page }) => {
+        const inventoryPage = new InventoryPage(page);
+        
+        //Add item to cart
+        await inventoryPage.addToCart('sauce labs backpack');
+
+        //verify button swaps to remove item
+        const backpackRemove = await inventoryPage.getRemoveButton('sauce labs backpack');
+        await expect(backpackRemove, 'Sauce Labs Backpack item remove button should be visible').toBeEnabled();
+
+        //remove item from cart
+        await inventoryPage.removeFromCart('sauce labs backpack');
+        
+        //verify cart badge is hidden
+        await expect(page.getByTestId(inventoryPage.cartBadge), 'Cart badge should be hidden').toBeHidden();
+    })
+})
