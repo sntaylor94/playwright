@@ -6,6 +6,10 @@ on:
     branches: [ main, master ]
 jobs:
   test:
+    env: 
+      STANDARD_USER_ID: ${{ secrets.STANDARD_USER_ID }}
+      SAUCE_USER_PASSWORD: ${{ secrets.SAUCE_USER_PASSWORD }}
+      LOCKED_OUT_USER_ID: ${{ secrets.LOCKED_OUT_USER_ID }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +22,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test 
     - uses: actions/upload-artifact@v4
       if: always()
       with:
