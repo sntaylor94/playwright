@@ -1,0 +1,25 @@
+{
+    "InventoryPage": {
+        "inventoryPageURL" : "https://www.saucedemo.com/inventory.html",
+        "inventoryItemName": ".inventory_item_name",
+        "inventoryItemPrice": ".inventory_item_price",
+        "cartBadge": "shopping-cart-badge",
+        "addItemButton": "add-to-cart-",
+        "removeItemButton": "remove-",
+        "sortDropdown": "product-sort-container"
+    },
+
+    "CartPage": {
+        "cartPageURL" : "https://www.saucedemo.com/cart.html",
+        "cartItem" : ".cart_item:has-text(\"",
+        "cartItemQuantity" : "[data-test='item-quantity']",
+        "inventoryItemName" : "[data-test='inventory-item-name']"
+    },
+
+    "LoginPage" : {
+        "loginPageURL" : "https://www.saucedemo.com",
+        "username" : "username",
+        "password" : "password",
+        "loginButton" : "login-button"
+    }
+}

@@ -122,6 +122,6 @@ test.describe("Add and remove inventory items", () => {
         await inventoryPage.removeFromCart('sauce labs backpack');
         
         //verify cart badge is hidden
-        await expect(page.getByTestId(inventoryPage.cartBadge), 'Cart badge should be hidden').toBeHidden();
+        await expect(await page.getByTestId(inventoryPage.cartBadge), 'Cart badge should be hidden').toBeHidden();
     })
 })

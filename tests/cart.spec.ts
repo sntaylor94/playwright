@@ -21,7 +21,7 @@ test.describe("Standard User cart interactions", () => {
         await page.waitForURL(cartPage.cartUrl);
         
         //Expect Sauce Labs Backpack item to be added to the cart & the quantity of said item to be 1
-        expect(await cartPage.getCartItemName(), "Item should be present in cart").toBe("Sauce Labs Backpack");
-        expect(await cartPage.getCartItemQuantity(), "Item quantity should equal 1").toEqual("1");
+        expect(await cartPage.getCartItemName('sauce labs backpack'), "Item should be present in cart").toBe("Sauce Labs Backpack");
+        expect(await cartPage.getCartItemQuantity('sauce labs backpack'), "Item quantity should equal 1").toEqual("1");
     })
 })
