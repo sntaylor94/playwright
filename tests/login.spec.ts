@@ -7,7 +7,6 @@ test.describe("Login to Swag Labs" , () => {
     
     test('standard user login', async ({ page }) => {
         const loginPage = new LoginPage(page); 
-        console.log(process.env.STANDARD_USER_ID);
         await loginPage.login(process.env.STANDARD_USER_ID!, process.env.SAUCE_USER_PASSWORD!);
         
         // Expect page navigation after successful login

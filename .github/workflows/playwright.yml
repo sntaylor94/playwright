@@ -9,6 +9,7 @@ jobs:
     env: 
       STANDARD_USER_ID: ${{ secrets.STANDARD_USER_ID }}
       SAUCE_USER_PASSWORD: ${{ secrets.SAUCE_USER_PASSWORD }}
+      LOCKED_OUT_USER_ID: ${{ secrets.LOCKED_OUT_USER_ID }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
