@@ -6,6 +6,9 @@ on:
     branches: [ main, master ]
 jobs:
   test:
+    env: 
+      STANDARD_USER_ID: ${{ secrets.STANDARD_USER_ID }}
+      SAUCE_USER_PASSWORD: ${{ secrets.SAUCE_USER_PASSWORD }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -18,10 +21,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      env: 
-        STANDARD_USER_ID: ${{ secrets.STANDARD_USER_ID }}
-        SAUCE_USER_PASSWORD: ${{ secrets.SAUCE_USER_PASSWORD }}
-      run: echo 'UID ${{ secrets.STANDARD_USER_ID}}' && npx playwright test
+      run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: always()
       with:
