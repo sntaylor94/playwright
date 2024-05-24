@@ -1,4 +1,4 @@
-import {expect, type Page, type Locator, selectors } from '@playwright/test';
+import { type Page, type Locator, selectors } from '@playwright/test';
 
 export class InventoryPage {
 
@@ -42,20 +42,20 @@ export class InventoryPage {
         await this.sortDropdown.selectOption(sortType);
     }
 
-    async getAddButton(item: String) {
+    async getAddButton(item: string) {
         return await this.page.getByTestId('add-to-cart-' + item.toLowerCase().replace(/\s/g, '-'));
     }
 
-    async getRemoveButton(item: String) {
+    async getRemoveButton(item: string) {
         return await this.page.getByTestId('remove-' + item.toLowerCase().replace(/\s/g, '-'));
     }
 
-    async addToCart(item: String) {
+    async addToCart(item: string) {
         const addItemButton = await this.page.getByTestId('add-to-cart-' + item.toLowerCase().replace(/\s/g, '-'));
         await addItemButton.click();
     }
 
-    async removeFromCart(item: String) {
+    async removeFromCart(item: string) {
          const removeItemButton = await this.page.getByTestId('remove-' + item.toLowerCase().replace(/\s/g, '-'));
          await removeItemButton.click();
     }
