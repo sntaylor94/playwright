@@ -1,4 +1,4 @@
-import { type Page, type Locator } from '@playwright/test';
+import {expect, type Page, type Locator, selectors } from '@playwright/test';
 
 export class CartPage {
 
@@ -18,9 +18,14 @@ export class CartPage {
         await this.page.goto(this.cartUrl);
     }
 
-    //refactor to make this reusable for each item
-    async getCartItemQuantity(item: string) {
+    async getCartItemQuantity() {
         const cartQuantity = await this.cartItem.getByText('1Sauce Labs Backpackcarry.').locator('[data-test="item-quantity"]').textContent();
+        return cartQuantity;
+    }
+
+    async getCartItemName() {
+        const cartItemName = await this.cartItem.getByText('1Sauce Labs Backpackcarry.').locator('[data-test="inventory-item-name"]').textContent();
+        return cartItemName;
     }
 
 }
