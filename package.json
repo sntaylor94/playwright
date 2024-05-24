@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --config=playwright.config.ts && npx playwright show-report",
+    "test": "npx playwright test /tests/login.spec.ts --config=playwright.config.ts && npx playwright show-report",
     "test visual": "npx playwright test --ui --config=playwright.config.ts && npx playwright show-report"
   },
   "keywords": [],
