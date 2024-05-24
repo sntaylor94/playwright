@@ -1,5 +1,5 @@
-import {expect, type Page, type Locator } from '@playwright/test';
-import { InventoryPage } from './inventory';
+import { type Page, type Locator } from '@playwright/test';
+
 
 export class LoginPage {
 

@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login';
 
+//refactor to use credential store
 const STANDARD_USER_ID = "standard_user";
 const LOCKED_OUT_USER_ID = "locked_out_user"
 const SAUCE_USER_PASSWORD = "secret_sauce";

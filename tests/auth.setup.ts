@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/login';
 
 const authFile = '../../.auth/user.json'
 
+//refactor to use credential store
 const STANDARD_USER_ID = "standard_user";
 const SAUCE_USER_PASSWORD = "secret_sauce";
 
