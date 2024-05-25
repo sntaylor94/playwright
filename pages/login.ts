@@ -1,5 +1,6 @@
-import {expect, type Page, type Locator } from '@playwright/test';
-import { InventoryPage } from './inventory';
+import { type Page, type Locator } from '@playwright/test';
+import * as selectors from './../utils/selectors.json'
+
 
 export class LoginPage {
 
@@ -11,10 +12,10 @@ export class LoginPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.loginURL = "https://www.saucedemo.com";
-        this.usernameField = page.getByTestId('username');
-        this.passwordField = page.getByTestId('password');
-        this.loginButton = page.getByTestId('login-button');
+        this.loginURL = selectors.LoginPage.loginPageURL;
+        this.usernameField = page.getByTestId(selectors.LoginPage.username);
+        this.passwordField = page.getByTestId(selectors.LoginPage.password);
+        this.loginButton = page.getByTestId(selectors.LoginPage.loginButton);
     }
 
     async gotoLogin() {

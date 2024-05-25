@@ -1,4 +1,5 @@
-import {expect, type Page, type Locator, selectors } from '@playwright/test';
+import { type Page, type Locator } from '@playwright/test';
+import * as selectors from './../utils/selectors.json'
 
 export class InventoryPage {
 
@@ -9,9 +10,9 @@ export class InventoryPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.inventoryURL = "https://www.saucedemo.com/inventory.html";
-        this.sortDropdown = page.getByTestId('product-sort-container');
-        this.cartBadge = 'shopping-cart-badge';
+        this.inventoryURL = selectors.InventoryPage.inventoryPageURL;
+        this.sortDropdown = page.getByTestId(selectors.InventoryPage.sortDropdown);
+        this.cartBadge = selectors.InventoryPage.cartBadge;
     }
 
     async goToInventory() {
@@ -19,8 +20,8 @@ export class InventoryPage {
     }
 
     async getTitles() {
-        await this.page.waitForSelector('.inventory_item_name');
-        const itemTitleList = await this.page.$$('.inventory_item_name');
+        await this.page.waitForSelector(selectors.InventoryPage.inventoryItemName);
+        const itemTitleList = await this.page.$$(selectors.InventoryPage.inventoryItemName);
         const titlesArray: string[] = [];
         for(let i = 0; i < itemTitleList.length; i++) {
             titlesArray[i] = (await itemTitleList[i].textContent())!
@@ -29,8 +30,8 @@ export class InventoryPage {
     }
 
     async getPrices() {
-        await this.page.waitForSelector('.inventory_item_price');
-        const itemPriceList = await this.page.$$('.inventory_item_price')
+        await this.page.waitForSelector(selectors.InventoryPage.inventoryItemPrice);
+        const itemPriceList = await this.page.$$(selectors.InventoryPage.inventoryItemPrice)
         const priceArray: string[] = [];
         for(let i = 0; i < itemPriceList.length; i++) {
             priceArray[i] = (await itemPriceList[i].textContent())!
@@ -42,21 +43,29 @@ export class InventoryPage {
         await this.sortDropdown.selectOption(sortType);
     }
 
-    async getAddButton(item: String) {
-        return await this.page.getByTestId('add-to-cart-' + item.toLowerCase().replace(/\s/g, '-'));
+    async getAddButton(item: string) {
+        return await this.page
+            .getByTestId(selectors.InventoryPage.addItemButton + item
+            .toLowerCase().replace(/\s/g, '-'));
     }
 
-    async getRemoveButton(item: String) {
-        return await this.page.getByTestId('remove-' + item.toLowerCase().replace(/\s/g, '-'));
+    async getRemoveButton(item: string) {
+        return await this.page
+            .getByTestId(selectors.InventoryPage.removeItemButton + item
+            .toLowerCase().replace(/\s/g, '-'));
     }
 
-    async addToCart(item: String) {
-        const addItemButton = await this.page.getByTestId('add-to-cart-' + item.toLowerCase().replace(/\s/g, '-'));
+    async addToCart(item: string) {
+        const addItemButton = await this.page
+            .getByTestId(selectors.InventoryPage.addItemButton + item
+            .toLowerCase().replace(/\s/g, '-'));
         await addItemButton.click();
     }
 
-    async removeFromCart(item: String) {
-         const removeItemButton = await this.page.getByTestId('remove-' + item.toLowerCase().replace(/\s/g, '-'));
+    async removeFromCart(item: string) {
+         const removeItemButton = await this.page
+            .getByTestId(selectors.InventoryPage.removeItemButton + item
+            .toLowerCase().replace(/\s/g, '-'));
          await removeItemButton.click();
     }
 

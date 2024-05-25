@@ -26,7 +26,7 @@ test.describe("Sort Inventory", () => {
         const orderMatches = helper.compareStringArray(itemTitles, sortedTitles);
 
         //Expect the sorted array to match the order of titles on the page
-        await expect(orderMatches, 'Items should be sorted in alphabetical order').toBe(true);
+        expect(orderMatches, 'Items should be sorted in alphabetical order').toBe(true);
     });
 
     test('sort reverse alphabetical', async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe("Sort Inventory", () => {
         //sort array by reverse alphabetical order & compare to page
         const sortedTitles = itemTitles.sort().reverse();
         const orderMatches = helper.compareStringArray(itemTitles, sortedTitles)
-        await expect(orderMatches, 'Items should be sorted in reverse alphabetical order').toBe(true);
+        expect(orderMatches, 'Items should be sorted in reverse alphabetical order').toBe(true);
     });
 
     test('sort price ascending', async ({ page }) => {
@@ -54,7 +54,7 @@ test.describe("Sort Inventory", () => {
         const orderMatches = await helper.compareNumArray(pricesArray, sortedPrices);
 
         //Expect sorted prices to match order of prices on page
-        await expect(orderMatches, 'Prices should be sorted low to high').toBe(true);
+        expect(orderMatches, 'Prices should be sorted low to high').toBe(true);
     });
 
     test('sort price descending', async ({ page }) => {
@@ -69,7 +69,7 @@ test.describe("Sort Inventory", () => {
         const orderMatches = await helper.compareNumArray(pricesArray, sortedPrices);
 
         //Expect sorted prices to match order of prices on page
-        await expect(orderMatches, 'Prices should be sorted high to low').toBe(true);
+        expect(orderMatches, 'Prices should be sorted high to low').toBe(true);
     });
 
 });
@@ -91,7 +91,7 @@ test.describe("Add and remove inventory items", () => {
         const cartCount = await inventoryPage.getCartCount();
         
         await expect(backpackRemove, 'Sauce Labs Backpack item remove button should be visible').toBeEnabled();
-        await expect(cartCount, 'Cart should display one item').toEqual("1");  
+        expect(cartCount, 'Cart should display one item').toEqual("1");  
     })
 
     test('add multiple items to cart', async ({ page }) => {
@@ -105,7 +105,7 @@ test.describe("Add and remove inventory items", () => {
         const cartCount = await inventoryPage.getCartCount();
 
         //Expect cart badge to display two items
-        await expect(cartCount, 'Cart badge should be visible & display two items').toEqual("2");
+        expect(cartCount, 'Cart badge should be visible & display two items').toEqual("2");
     })
 
     test('validate remove item works', async ({ page }) => {
