@@ -18,13 +18,13 @@ export class CartPage {
     }
 
     async getCartItemQuantity(item: string) {
-        const cartQuantity = await this.page.locator(selectors.CartPage.cartItem + item + '")')
+        const cartQuantity = await this.page.locator(selectors.CartPage.cartItem + ":has-text(\"" + item + '")')
             .locator(selectors.CartPage.cartItemQuantity).textContent();
         return cartQuantity;
     }
 
     async getCartItemName(item: string) {
-        const cartItemName = await this.page.locator(selectors.CartPage.cartItem + item + '")')
+        const cartItemName = await this.page.locator(selectors.CartPage.cartItem + ":has-text(\"" + item + '")')
             .locator(selectors.CartPage.inventoryItemName).textContent();
         return cartItemName;
     }

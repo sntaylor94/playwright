@@ -11,7 +11,7 @@
 
     "CartPage": {
         "cartPageURL" : "https://www.saucedemo.com/cart.html",
-        "cartItem" : ".cart_item:has-text(\"",
+        "cartItem" : ".cart_item",
         "cartItemQuantity" : "[data-test='item-quantity']",
         "inventoryItemName" : "[data-test='inventory-item-name']"
     },
